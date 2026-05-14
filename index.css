@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --animate-spin-slow: spin 8s linear infinite;
+}
+
+.docx-content h1 { @apply text-2xl font-bold mb-4 text-slate-900; }
+.docx-content h2 { @apply text-xl font-bold mb-3 mt-6 text-slate-800; }
+.docx-content p { @apply mb-4 leading-relaxed; }
+.docx-content ul { @apply list-disc pl-6 mb-4; }
+.docx-content ol { @apply list-decimal pl-6 mb-4; }
+.docx-content table { @apply w-full border-collapse mb-6; }
+.docx-content td, .docx-content th { @apply border border-slate-200 p-2; }
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@layer utilities {
+  .animate-spin-slow {
+    animation: var(--animate-spin-slow);
+  }
+}
+
+body {
+  @apply bg-[#020617] text-slate-100 font-sans min-h-screen relative overflow-x-hidden;
+  background-image: radial-gradient(circle at 50% -20%, #1e1b4b 0%, #020617 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 50px 160px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 160px 120px, #fff, rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.2;
+  z-index: -1;
+  animation: stars 100s linear infinite;
+}
+
+@keyframes stars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); }
+}
+
+.gradient-bg {
+  @apply bg-[#020617] relative;
+}
+
+.gradient-btn {
+  @apply bg-indigo-600 text-white font-semibold py-2 px-6 rounded-xl shadow-[0_0_20px_-5px_rgba(79,70,229,0.5)] hover:bg-indigo-500 hover:shadow-[0_0_25px_-5px_rgba(79,70,229,0.6)] transition-all active:scale-95;
+}
+
+.card {
+  @apply bg-slate-900/40 backdrop-blur-xl rounded-2xl border border-slate-800 shadow-2xl;
+}
+
+.custom-scrollbar::-webkit-scrollbar { 
+  width: 8px; 
+  height: 8px; 
+}
+.custom-scrollbar::-webkit-scrollbar-track { 
+  background: rgba(15, 23, 42, 0.6); 
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb { 
+  background: rgba(79, 70, 229, 0.3); 
+  border-radius: 10px;
+  border: 2px solid rgba(15, 23, 42, 0.6);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { 
+  background: rgba(79, 70, 229, 0.5); 
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.perspective-1000 { perspective: 1000px; }
+.preserve-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; }
+.rotate-y-180 { transform: rotateY(180deg); }
